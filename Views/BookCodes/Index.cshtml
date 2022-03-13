@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Library_Managenent.Models.BookCode>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="alert alert-info text-center">Distinct Book List</h1>
+
+<p>
+    <a class="btn btn-success" asp-action="Create">Create New <i class="fas fa-plus"></i></a>
+</p>
+<table class="table table-bordered table-sm">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CodeNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Books)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Book_Statuss.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CodeNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Books.Book_Name)
+                </td>
+                @if (item.Book_Statuss.Status == "Available")
+                {
+                    <td class="alert alert-info">
+
+                        @Html.DisplayFor(modelItem => item.Book_Statuss.Status)
+                    </td>
+                }
+                else
+                {
+                     <td class="alert alert-danger">
+                        @Html.DisplayFor(modelItem => item.Book_Statuss.Status)
+                    </td>
+                }
+                <td>
+                    <a asp-action="Edit" class="btn btn-primary btn-sm" asp-route-id="@item.Id"><i class="fa fa-pen"></i></a>
+                    <a asp-action="Details" class="btn btn-info btn-sm" asp-route-id="@item.Id"><i class="fa fa-list"></i></a>
+                    <a asp-action="Delete" class="btn btn-danger btn-sm" asp-route-id="@item.Id"><i class="fa fa-trash"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,73 @@
+﻿@model Library_Management.Models.Student
+
+@{
+    ViewData["Title"] = "StuList";
+}
+
+<h1 class="alert alert-info text-center"> Hello! @Model.Name </h1>
+@if (Model != null)
+{
+    <hr />
+    <div class="row">
+    <div class="col-7">
+        
+        <dl class="row">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Student_Code)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Student_Code)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Age)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Age)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Gender)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Gender)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Department)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Department)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Season)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Season)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Mobile)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Mobile)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+        </dl>
+    </div>
+    <div class="col-5">
+        <img src="~/Images/@Model.Student_Image" alt="No pic" height="300" width="300">
+    </div>
+    </div>
+}
+else
+{
+    <h1>Model Is null</h1>
+}

@@ -1,0 +1,164 @@
+﻿@model IEnumerable<Library_Management.Models.Book>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<h1 class="alert alert-info text-center">Book List</h1>
+<style>
+    /*body {
+        background-color: #141414;
+    }*/
+    
+    .card {
+        border:none;
+        background-color: #000;
+    }
+    .card:hover{
+        border:2px solid #3b26bb;
+        border-color:black;
+    }
+    .shadow-lg {
+        box-shadow: 9px 9px 3px black !important;
+    }
+</style>
+
+<div class="mb-4 d-flex justify-content-end">
+    <form asp-action="index" method="post" class="form-inline">
+        <input type="text" class="form-control mr-2" name="search" value="@ViewBag.search" placeholder="Please type here to search" />
+        <button type="submit" class="btn btn-success">Search</button>
+    </form>
+</div>
+@if (User.Identity.IsAuthenticated)
+{
+    if (User.IsInRole("Admin"))
+    {
+        <p>
+            <a class="btn btn-success" asp-action="Create">Create New <i class="fa fa-plus"></i></a>
+        </p>
+        <table class="table table-bordered table-sm table-hover table-condensed ">
+            <thead class="thead-dark">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Book_Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Book_Title)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Author)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Publisher)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Category)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Edition)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Details)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Picture)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Book_Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Book_Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Author)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Publisher)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Category)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Edition)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Details)
+                        </td>
+                        <td>
+                            @if (item.Picture == null)
+                            {
+                                <img src="Images/Library.jpg" height="50" width="50" class="card-image-top" alt="">
+
+                            }
+                            else
+                            {
+                                <img src="BookImg/@item.Picture" height="50" width="50" class="card-image-top" alt="">
+                            }
+                        </td>
+                        <td>
+                            <a class="btn btn-primary btn-sm mb-1" asp-action="Edit" asp-route-id="@item.Id"><i class="fa fa-pen"></i></a>
+                            <a class="btn btn-info btn-sm mb-1" asp-action="Details" asp-route-id="@item.Id"><i class="fa fa-list"></i></a>
+                            <a class="btn btn-danger btn-sm mb-1" asp-action="Delete" asp-route-id="@item.Id"><i class="fa fa-trash"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    @if (User.IsInRole("Student"))
+    {
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-3">
+                    <div class="card shadow-lg mb-5" style="max-width: 18rem;">
+                        @if (@item.Picture == null)
+                        {
+                            <img src="Images/Library.jpg" height="200" class="card-image-top" alt="">
+                        }
+                        else
+                        {
+                            <img src="BookImg/@item.Picture" height="200" class="card-image-top" alt="">
+                        }
+                        <div class="card-body text-white bg-dark">
+                            <h5 class="card-title">@item.Book_Name <sup>@item.Edition</sup></h5>
+                            <p class="card-text">@item.Author</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+}
+else
+{
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3">
+                <div class="card shadow-lg mb-5" style="max-width: 18rem;">
+                    @if (@item.Picture == null)
+                    {
+                        <img src="Images/Library.jpg" height="200" class="card-image-top" alt="">
+                    }
+                    else
+                    {
+                        <img src="BookImg/@item.Picture" height="200" class="card-image-top" alt="">
+                    }
+                    <div class="card-body text-white bg-dark">
+                        <h5 class="card-title">@item.Book_Name <sup>@item.Edition</sup></h5>
+                        <p class="card-text">@item.Author</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+

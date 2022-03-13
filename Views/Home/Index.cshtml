@@ -1,0 +1,152 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<style>
+    .card:hover{
+            box-shadow:0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19);
+            border-color:white;
+    }
+</style>
+@if (User.Identity.IsAuthenticated)
+{
+
+
+    @if (User.IsInRole("Admin"))
+    {
+        <div class="container table-bordered shadow-lg mb-4" style="background-color:#101010;">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card-sm text-white mb-3 mt-3 " style="max-width: auto; background-color:#252528;">
+                        <div class="card-body">
+                            <h2 class="card-title text-center">Dashbord</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-white mb-3" style="max-width: 18rem;  height:14rem;background-color:#252528;">
+                        <div class="card-header">Total Book</div>
+                        <div class="card-body">
+
+                            <p class="card-text" style="font-size:90px">@ViewBag.TotalBook</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-white mb-3" style="max-width: 18rem;height:14rem;background-color:#252528;">
+                        <div class="card-header">Total Student</div>
+                        <div class="card-body">
+                            <p class="card-text" style="font-size:90px">@ViewBag.TotalStudent</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-white mb-3" style="max-width: 18rem;height:14rem;background-color:#252528;">
+                        <div class="card-header">Total Issued</div>
+                        <div class="card-body">
+                            <p class="card-text" style="font-size:90px">@ViewBag.TotalIssue</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-white mb-3" style="max-width: 18rem; height:14rem;background-color:#252528;">
+                        <div class="card-header">Total Returned </div>
+                        <div class="card-body">
+                            <p class="card-text" style="font-size:90px">@ViewBag.TotalReturn</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-3">
+                    <div class="card text-white mb-3" style="max-width: 18rem;height:14rem;background-color:#252528;">
+                        <div class="card-header">Today Issue</div>
+                        <div class="card-body">
+                            <p class="card-text" style="font-size:90px">@ViewBag.TodayIssue</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-white bg-danger mb-3" style="max-width: 18rem;height:14rem;">
+                        <div class="card-header">Return Time Exceed</div>
+                        <div class="card-body">
+                            <p class="card-text" style="font-size:90px">@ViewBag.ReturnExc</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-white bg-danger mb-3" style="max-width: 18rem;height:14rem;">
+                        <div class="card-header">Pending Appruval</div>
+                        <div class="card-body">
+                            <p class="card-text" style="font-size:90px">@ViewBag.PendingApp</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+    @if (User.IsInRole("Student"))
+    {
+        <div class="container table-bordered box-shadow">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card-sm text-white bg-info mb-3 mt-3 " style="max-width: auto;">
+                        <div class="card-body">
+                            <h5 class="card-title">Danger card title</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card-sm text-white bg-primary mb-3" style="max-width: 18rem;">
+                        <div class="card-header">Total Issue Book</div>
+                        <div class="card-body">
+                            <h5 class="card-title">Danger card title</h5>
+                            <p class="card-text" style="font-size:90px"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+                        <div class="card-header">Returned Book</div>
+                        <div class="card-body">
+                            <h5 class="card-title">Danger card title</h5>
+                            <p class="card-text" style="font-size:90px"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
+                        <div class="card-header">Not Returned</div>
+                        <div class="card-body">
+                            <h5 class="card-title">Danger card title</h5>
+                            <p class="card-text" style="font-size:90px"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <div class="d-flex justify-content-center toshow2" style="display:none;">
+        <div >
+            <img src="/Images/Library.jpg" class="rounded-circle" height="300" width="300">
+        </div>
+    </div>
+    <div class="toshow" style="display:none;">
+        <h1 class="text-center"  style="font-size: 70px;font-family:Lato;color:#073763">Welcome To Library Management System</h1>
+
+    </div>
+}
+
+@section Scripts{
+<script>
+    $(document).ready(function(){
+        $('div.toshow2').slideDown(2000);
+        $('div.toshow').slideDown(3500);
+        
+
+      
+    });
+</script>
+}

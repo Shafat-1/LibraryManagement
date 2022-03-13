@@ -1,0 +1,119 @@
+﻿@model Library_Management.Models.Issue
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<h4 class="alert alert-info text-center">ISSUE BOOK</h4>
+<hr />
+
+<h3 class="text-danger">@ViewBag.msg</h3>
+@*<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Issue_Date" class="control-label"></label>
+                <input asp-for="Issue_Date" class="form-control" />
+                <span asp-validation-for="Issue_Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Return_Date" class="control-label"></label>
+                <input asp-for="Return_Date" class="form-control" />
+                <span asp-validation-for="Return_Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ActualReturn_Date" class="control-label"></label>
+                <input asp-for="ActualReturn_Date" class="form-control" />
+                <span asp-validation-for="ActualReturn_Date" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsReturned" /> @Html.DisplayNameFor(model => model.IsReturned)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="StudentId" class="control-label"></label>
+                <select id="this" asp-for="StudentId" class ="form-control" asp-items="ViewBag.StudentId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="BookCodeId" class="control-label"></label><br />
+                <select asp-for="BookCodeId" class ="form-control" asp-items="ViewBag.BookCodeId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>*@
+
+<div class="col-md-10 mx-auto py-4">
+    <div class="card">
+        <div class="card-header bg-primary text-uppercase text-white">  
+            <h4 class="text-center">Issue Book</h4>  
+        </div> 
+        <div class="card-body">
+            <form enctype="multipart/form-data" asp-action="Create">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="StudentId" class="control-label"></label>
+                            <select id="StudentId" asp-for="StudentId" class ="form-control" asp-items="ViewBag.StudentId"> </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="BookCodeId" class="control-label"></label>
+                            <select id="BookCodeId" asp-for="BookCodeId" class ="form-control" asp-items="ViewBag.BookCodeId"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    @*<div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Issue_Date" class="control-label"></label>
+                            <input asp-for="Issue_Date" class="form-control" />
+                            <span asp-validation-for="Issue_Date" class="text-danger"></span>
+                        </div>
+                    </div>*@
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Return_Date" class="control-label"></label>
+                            <input asp-for="Return_Date" class="form-control" />
+                            <span asp-validation-for="Return_Date" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-success btn-sm" />
+                <a class="btn btn-primary btn-sm" asp-action="Index">Back to List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+@*<div>
+    <a asp-action="Index">Back to List</a>
+</div>*@
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+     <script type="text/javascript">
+         $(document).ready(function () {
+             $("#StudentId").select2({
+                 placeholder: 'Enter Email Address',
+                 multiple: false
+             });
+             $("#BookCodeId").select2({
+                 placeholder: 'Enter Book Name',
+                 multiple: false
+             });
+         });
+     </script>
+}

@@ -1,0 +1,37 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model IQueryable<IdentityUser>
+@{
+    ViewData["Title"] = "UserList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>UserList</h1>
+
+<table class="table table-bordered table-hover table-sm">
+    <thead class="thead-dark">
+        <tr class="text-center">
+            <th>Id</th>
+            <th>Email</th>
+            <th>User Name</th>
+            <th>Status</th>
+            <th></th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="text-center">
+                <td>@item.Id</td>
+                <td>@item.Email</td>
+                <td>@item.UserName</td>
+                <td>@Html.DisplayFor(modelItem => item.EmailConfirmed)</td>
+                <td>
+                    <a asp-action="Edit" class="btn btn-info btn-sm" asp-route-id="@item.Id"><i class="fa fa-arrow-left"></i></a>
+                </td>
+            </tr>
+            
+        }
+    </tbody>
+</table>
+

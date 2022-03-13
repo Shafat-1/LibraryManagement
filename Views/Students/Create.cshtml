@@ -1,0 +1,243 @@
+﻿@using Library_Managenent.ViewModels
+@model Library_Managenent.ViewModels.StudentViews
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+    @if (User.IsInRole("Admin"))
+    {
+        <h1 class="alert alert-info text-center">ADD New Member</h1>
+    }
+
+}
+else
+{
+    <div class="hid" style="display:none;">
+        <h1 class="alert alert-info text-center">Apply For Membership</h1>
+    </div>
+        <p id="hide" class="text-danger">@ViewBag.msg</p>
+
+}
+
+
+
+
+<hr />
+@*<div class="row">
+    <div class="col-md-4">
+    <form asp-action="Create" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger" ></div>
+    <div class="form-group">
+    <label asp-for="Name" class="control-label"></label>
+    <input asp-for="Name" class="form-control" />
+    <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+    <label asp-for="Student_Code" class="control-label"></label>
+    <input asp-for="Student_Code" class="form-control" />
+    <span asp-validation-for="Student_Code" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+    <label asp-for="Age" class="control-label"></label>
+    <input asp-for="Age" class="form-control" />
+    <span asp-validation-for="Age" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+    <label asp-for="Gender" class="control-label"></label>
+    <select asp-for="Gender" class="form-control"></select>
+    <span asp-validation-for="Gender" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+    <label asp-for="Department" class="control-label"></label>
+    <select asp-for="Department" class="form-control"></select>
+    <span asp-validation-for="Department" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+    <label asp-for="Season" class="control-label"></label>
+    <input asp-for="Season" class="form-control" />
+    <span asp-validation-for="Season" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+    <label asp-for="Mobile" class="control-label"></label>
+    <input asp-for="Mobile" class="form-control" />
+    <span asp-validation-for="Mobile" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+    <label asp-for="Email" class="control-label"></label>
+    <input asp-for="Email" class="form-control" />
+    <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+    <label asp-for="Student_Image" class="control-label"></label>
+    <input type="file" asp-for="Student_Image" class="form-control" />
+    <span asp-validation-for="Student_Image" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+    <label asp-for="Password" class="control-label"></label>
+    <input asp-for="Password" class="form-control" />
+    <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+    <label asp-for="Confirm_Password" class="control-label"></label>
+    <input asp-for="Confirm_Password" class="form-control" />
+    <span asp-validation-for="Confirm_Password" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+    <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+    </form>
+    </div>
+    </div>*@
+
+<div class="col-md-10 mx-auto py-4">
+    <div class="card shadow-lg">
+        <div class="card-header text-uppercase text-white" style="background-color:#252528">
+            <h4 class="text-center">Resister Form</h4>
+        </div>
+        <div class="card-body">
+            <form enctype="multipart/form-data" asp-action="Create">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Name" class="control-label"></label>
+                            <input asp-for="Name" class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Student_Code" class="control-label"></label>
+                            <input asp-for="Student_Code" class="form-control" />
+                            <span asp-validation-for="Student_Code" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Age" class="control-label"></label>
+                            <input asp-for="Age" class="form-control" />
+                            <span asp-validation-for="Age" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Gender" class="control-label"></label>
+                            <select asp-for="Gender" class="form-control" asp-items="Html.GetEnumSelectList<Gender>()"></select>
+                            <span asp-validation-for="Gender" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Department" class="control-label"></label>
+                            <select asp-for="Department" class="form-control" asp-items="Html.GetEnumSelectList<Department>()"></select>
+                            <span asp-validation-for="Department" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Season" class="control-label"></label>
+                            <input asp-for="Season" class="form-control" />
+                            <span asp-validation-for="Season" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Mobile" class="control-label"></label>
+                            <input asp-for="Mobile" class="form-control" />
+                            <span asp-validation-for="Mobile" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Email" class="control-label"></label>
+                            <input asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Password" class="control-label"></label>
+                            <input id="password" asp-for="Password" class="form-control" vali />
+                            <span id="passerr" class="text-danger"></span>
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Confirm_Password" class="control-label"></label>
+                            <input asp-for="Confirm_Password" class="form-control" />
+                            <span asp-validation-for="Confirm_Password" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Student_Image" class="control-label"></label>
+                            <input type="file" asp-for="Student_Image" class="form-control" />
+                            <span asp-validation-for="Student_Image" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (User.IsInRole("Admin"))
+                        {
+                            <input type="submit" value="Create" class="btn btn-primary btn-sm" />
+                            <a asp-action="Index" class="btn btn-info btn-sm">Back to List</a>
+                        }
+                    }
+                    else
+                    {
+                        <input type="submit" value="Create" class="btn btn-primary btn-sm" />
+                    }
+                </div>
+            </form>
+            <div class="float-sm-rigth">
+            </div>
+        </div>
+    </div>
+</div>
+
+@*special char-------@"/.[!,@,#,$,%,^,&,*,?,_,~,-,£,(,)]/"*@
+
+
+@section Scripts {
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+
+<script>
+    $(document).ready(function(){
+        $("#password").keyup(function(){
+            let pass= $("#password").val();
+
+            if(pass.match('[A-Z]') && pass.match('[a-z]') && pass.match('[0-9]'))
+            {
+                if(/.[!,@@,#,$,%,^,&,*,?,_,~,-,£,(,)]/.test(pass) == true)
+                {
+                    $('#passerr').html("")
+                }
+            }
+            else
+            {
+                $('#passerr').html("Password Must Be Contain One Special character,One A-Z, One a-z,One 0-9")
+            }
+        });
+        $('#hide').delay(3200).fadeOut(300);
+        $('div.hid').slideDown(2000);
+        
+    });
+</script>
+}

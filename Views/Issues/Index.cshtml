@@ -1,0 +1,91 @@
+﻿@model IEnumerable<Library_Management.Models.Issue>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<h2 class="text-danger">@ViewBag.msg</h2>
+<p>
+    <a asp-action="Create" class="btn btn-success">Create New <i class="fa fa-plus-square"></i></a>
+</p>
+<table class="table table-bordered table-sm ">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Student)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Issue_Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Return_Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ActualReturn_Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsReturned)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookCodeId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookCodes.Books.Book_Name)
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Student.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Issue_Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Return_Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ActualReturn_Date)
+                </td>
+                @if (item.IsReturned == true)
+                {
+                    <td class="alert alert-success " id="che">
+                        @Html.DisplayFor(modelItem => item.IsReturned)
+                    </td>
+                }
+                else
+                {
+                    <td class="alert alert-danger" id="cha">
+                        @Html.DisplayFor(modelItem => item.IsReturned)
+                    </td>
+                }
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookCodes.CodeNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookCodes.Books.Book_Name)
+                </td>
+                <td>
+                    <a class="btn btn-info btn-sm" asp-action="Edit" asp-route-id="@item.Id"><i class="fas fa-pen"></i></a>
+                    <a class="btn btn-primary btn-sm" asp-action="Details" asp-route-id="@item.Id"><i class="fas fa-list"></i></a>
+                    <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id"><i class="fa fa-trash"></i></a>
+
+                    
+
+                </td>
+                <td>
+                    <form asp-action="Return" method="post">
+                        <input type="hidden" name="id" asp-for="@item.Id" />
+                        <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-long-arrow-alt-left"></i></button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
